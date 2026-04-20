@@ -6,6 +6,6 @@ namespace WebApi.Services.Empresa
     {
         Task<ResponseModel<List<EmpresaModel>>> ListarEmpresas();
         Task<ResponseModel<EmpresaModel>> BuscarEmpresaPorId(int idEmpresa);
-        Task<ResponseModel<EmpresaModel>> BuscarEmpresaPorIdLivro(int idJogo);
+        Task<ResponseModel<EmpresaModel>> BuscarEmpresaPorIdJogo(int idJogo);
     }
 }

@@ -40,7 +40,7 @@ namespace WebApi.Services.Empresa
             }
         }
 
-        public async Task<ResponseModel<EmpresaModel>> BuscarEmpresaPorIdLivro(int idJogo)
+        public async Task<ResponseModel<EmpresaModel>> BuscarEmpresaPorIdJogo(int idJogo)
         {
             ResponseModel<EmpresaModel> resposta = new ResponseModel<EmpresaModel>();
             try

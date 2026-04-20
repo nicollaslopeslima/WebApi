@@ -28,5 +28,12 @@ namespace WebApi.Controllers
             var empresa = await _empresaInterface.BuscarEmpresaPorId(idEmpresa);
             return Ok(empresa);
         }
+
+        [HttpGet("BuscarEmpresaPorIdJogo/{idJogo}")]
+        public async Task<ActionResult<ResponseModel<EmpresaModel>>> BuscarEmpresaPorIdJogo(int idJogo)
+        {
+            var empresa = await _empresaInterface.BuscarEmpresaPorIdJogo(idJogo);
+            return Ok(empresa);
+        }
     }
 }
