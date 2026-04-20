@@ -40,9 +40,32 @@ namespace WebApi.Services.Empresa
             }
         }
 
-        public Task<ResponseModel<EmpresaModel>> BuscarEmpresaPorIdLivro(int idJogo)
+        public async Task<ResponseModel<EmpresaModel>> BuscarEmpresaPorIdLivro(int idJogo)
         {
-            throw new NotImplementedException();
+            ResponseModel<EmpresaModel> resposta = new ResponseModel<EmpresaModel>();
+            try
+            {
+                var livro = await _context.Jogos
+                    .Include(j => j.Empresa)
+                    .FirstOrDefaultAsync(jogoBanco => jogoBanco.Id == idJogo);
+
+                if (livro == null)
+                {
+                    resposta.Mensagem = "Nenhum registro localizado.";
+                    return resposta;    
+                }
+
+                resposta.Dados = livro.Empresa;
+                resposta.Mensagem = "Empresa localizada com sucesso.";
+                return resposta;
+            }
+            catch (Exception ex)
+            {
+
+                resposta.Mensagem = ex.Message;
+                resposta.Status = false;
+                return resposta;
+            }
         }
 
         public async Task<ResponseModel<List<EmpresaModel>>> ListarEmpresas()
