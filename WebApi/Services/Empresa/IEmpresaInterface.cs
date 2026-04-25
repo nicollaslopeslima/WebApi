@@ -1,4 +1,5 @@
-﻿using WebApi.Models;
+﻿using WebApi.Dto.Empresa;
+using WebApi.Models;
 
 namespace WebApi.Services.Empresa
 {
@@ -7,5 +8,7 @@ namespace WebApi.Services.Empresa
         Task<ResponseModel<List<EmpresaModel>>> ListarEmpresas();
         Task<ResponseModel<EmpresaModel>> BuscarEmpresaPorId(int idEmpresa);
         Task<ResponseModel<EmpresaModel>> BuscarEmpresaPorIdJogo(int idJogo);
+
+        Task<ResponseModel<List<EmpresaModel>>> CriarEmpresa(EmpresaCriacaoDto empresaCriacaoDto);
     }
 }

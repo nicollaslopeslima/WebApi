@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using WebApi.Dto.Empresa;
 using WebApi.Models;
 using WebApi.Services.Empresa;
 
@@ -34,6 +35,13 @@ namespace WebApi.Controllers
         {
             var empresa = await _empresaInterface.BuscarEmpresaPorIdJogo(idJogo);
             return Ok(empresa);
+        }
+
+        [HttpPost("CriarEmpresa")]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+        public async Task<ActionResult<ResponseModel<EmpresaModel>>> CriarEmpresa(EmpresaCriacaoDto empresaCriacaoDto)
+        {
+            var empresas = await _empresaInterface.CriarEmpresa(empresaCriacaoDto);
+            return Ok(empresas);
         }
     }
 }

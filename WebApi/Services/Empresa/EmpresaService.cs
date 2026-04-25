@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Azure;
+using Microsoft.EntityFrameworkCore;
 using WebApi.Data;
+using WebApi.Dto.Empresa;
 using WebApi.Models;
 
 namespace WebApi.Services.Empresa
@@ -63,6 +65,31 @@ namespace WebApi.Services.Empresa
             {
 
                 resposta.Mensagem = ex.Message;
+                resposta.Status = false;
+                return resposta;
+            }
+        }
+
+        public async Task<ResponseModel<List<EmpresaModel>>> CriarEmpresa(EmpresaCriacaoDto empresaCriacaoDto)
+        {
+           ResponseModel<List<EmpresaModel>> resposta = new ResponseModel<List<EmpresaModel>>();
+            try
+            {
+                var empresa = new EmpresaModel()
+                {
+                    Nome = empresaCriacaoDto.Nome
+                };
+
+                _context.Empresas.Add(empresa);
+                await _context.SaveChangesAsync();
+
+                resposta.Dados = await _context.Empresas.ToListAsync();
+                resposta.Mensagem = "Empresa criada com sucesso.";
+                return resposta;
+            }
+            catch (Exception ex)
+            {
+               resposta.Mensagem = ex.Message;
                 resposta.Status = false;
                 return resposta;
             }
