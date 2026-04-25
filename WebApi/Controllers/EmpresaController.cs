@@ -37,10 +37,24 @@ namespace WebApi.Controllers
             return Ok(empresa);
         }
 
-        [HttpPost("CriarEmpresa")]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
-        public async Task<ActionResult<ResponseModel<EmpresaModel>>> CriarEmpresa(EmpresaCriacaoDto empresaCriacaoDto)
+        [HttpPost("CriarEmpresa")]
+        public async Task<ActionResult<ResponseModel<List<EmpresaModel>>>> CriarEmpresa(EmpresaCriacaoDto empresaCriacaoDto)
         {
             var empresas = await _empresaInterface.CriarEmpresa(empresaCriacaoDto);
+            return Ok(empresas);
+        }
+
+        [HttpPut("EditarEmpresa")]
+        public async Task<ActionResult<ResponseModel<List<EmpresaModel>>>> EditarEmpresa(EmpresaEdicaoDto empresaEdicaoDto)
+        {
+            var empresas = await _empresaInterface.EditarEmpresa(empresaEdicaoDto);
+            return Ok(empresas);
+        }
+
+        [HttpDelete("ExcluirEmpresa")]
+        public async Task<ActionResult<ResponseModel<List<EmpresaModel>>>> ExcluirEmpresa(int idEmpresa)
+        {
+            var empresas = await _empresaInterface.ExcluirEmpresa(idEmpresa);
             return Ok(empresas);
         }
     }
