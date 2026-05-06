@@ -12,7 +12,5 @@ namespace WebApi.Services.Empresa
         Task<ResponseModel<List<EmpresaModel>>> CriarEmpresa(EmpresaCriacaoDto empresaCriacaoDto);
         Task<ResponseModel<List<EmpresaModel>>> EditarEmpresa(EmpresaEdicaoDto empresaEdicaoDto);
         Task<ResponseModel<List<EmpresaModel>>> ExcluirEmpresa(int idEmpresa);
-
-
     }
 }

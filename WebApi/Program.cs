@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using WebApi.Data;
 using WebApi.Services.Empresa;
+using WebApi.Services.Jogo;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IEmpresaInterface, EmpresaService>();
+builder.Services.AddScoped<IJogoInterface, JogoService>();
+
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
