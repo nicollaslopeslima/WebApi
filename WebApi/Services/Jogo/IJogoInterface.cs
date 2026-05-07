@@ -7,8 +7,7 @@ namespace WebApi.Services.Jogo
     {
         Task<ResponseModel<List<JogoModel>>> ListarJogos();
         Task<ResponseModel<JogoModel>> BuscarJogoPorId(int idJogo);
-        Task<ResponseModel<JogoModel>> BuscarJogoPorIdEmpresa(int idEmpresa);
-
+        Task<ResponseModel<List<JogoModel>>> BuscarJogoPorIdEmpresa(int idEmpresa);
         Task<ResponseModel<List<JogoModel>>> CriarJogo(JogoCriacaoDto JogoCriacaoDto);
         Task<ResponseModel<List<JogoModel>>> EditarJogo(JogoEdicaoDto JogoEdicaoDto);
         Task<ResponseModel<List<JogoModel>>> ExcluirJogo(int idJogo);

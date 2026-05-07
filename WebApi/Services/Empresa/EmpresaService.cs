@@ -155,7 +155,6 @@ namespace WebApi.Services.Empresa
                 resposta.Status = false;
 
                 return resposta;
-
             }
         }
 
