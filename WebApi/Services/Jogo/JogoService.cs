@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WebApi.Data;
-using WebApi.Dto.Empresa;
 using WebApi.Dto.Jogo;
 using WebApi.Models;
 
@@ -21,6 +20,7 @@ namespace WebApi.Services.Jogo
             try
             {
                 var jogo = await _context.Jogos
+                    .Include(e => e.Empresa)
                     .FirstOrDefaultAsync(jogoBanco => jogoBanco.Id == idJogo);
 
                 if (jogo == null)
@@ -156,6 +156,7 @@ namespace WebApi.Services.Jogo
             try
             {
                 var jogo = _context.Jogos
+                    .Include(e => e.Empresa)
                     .FirstOrDefault(jogoBanco => jogoBanco.Id == idJogo);
 
                 if (jogo == null)
@@ -186,7 +187,7 @@ namespace WebApi.Services.Jogo
             ResponseModel<List<JogoModel>> resposta = new ResponseModel<List<JogoModel>>();
             try
             {
-                var jogos = await _context.Jogos.ToListAsync();
+                var jogos = await _context.Jogos.Include(e => e.Empresa).ToListAsync();
 
                 resposta.Dados = jogos;
                 resposta.Mensagem = "Jogos listados com sucesso.";
